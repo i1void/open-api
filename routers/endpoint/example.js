@@ -1,14 +1,12 @@
-import { Loader } from '@neoxr/webly'
-const Scraper = Loader.scrapers
+import { Loader } from '../../lib/app.js'
 
 export const routes = {
    category: 'main',
    path: '/api/tempo',
    parameter: ['q'],
    method: 'get',
-   execution: async (req, res, next) => {
-      const { q } = req.query
-      const json = await Scraper.tempo.search(q)
+   execution: async (req, res) => {
+      const json = await Loader.scrapers.tempo.search(req.query.q)
       res.json(json)
    },
    error: false,
